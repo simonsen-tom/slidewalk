@@ -1,0 +1,208 @@
+/* The "Atomic purple" palette. Every color here is a checked WCAG AAA pair
+   against the background it actually sits on (>=7:1, the AAA bar for
+   normal text). The per-theme values and their exact ratios live in
+   styles/themes/{light,dark}.css. This :root block just copies the light
+   theme, so things look right before the JS kicks in. */
+:root {
+  --sw-bg: #ffffff;
+  --sw-fg: #1f0e33; /* 17.97:1 on white */
+  --sw-h1: #3b0764; /* 15.00:1 */
+  --sw-h2: #4c1d95; /* 10.95:1 */
+  --sw-h3: #581c87; /* 10.88:1 */
+  --sw-h4: #6b21a8; /*  8.72:1 */
+  --sw-h5: #86198f; /*  8.24:1 */
+  --sw-h6: #701a75; /* 10.03:1 */
+
+  --sw-code-bg: #f7f4fc;
+  --sw-code-fg: #1f0e33; /* 16.51:1 */
+  --sw-code-comment: #414a58; /*  8.23:1, also italic */
+  --sw-code-keyword: #6b21a8; /*  8.01:1 */
+  --sw-code-string: #14532d; /*  8.37:1 */
+  --sw-code-number: #7c2d12; /*  8.61:1 */
+  --sw-code-name: #1e40af; /*  8.02:1 */
+
+  --sw-overview-bg: #0a0614; /* deep purple-black; label/accent stay AAA (17.62:1 / >=7.58:1) against it */
+  --sw-overview-label: #f3eeff; /* 16.87:1 on the overlay's #0f0f0f */
+  --sw-overview-accent: #c084fc; /*  7.25:1 on the overlay's #0f0f0f */
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+}
+
+/* The deck markup in index.html is data, not UI. The runtime reads it with
+   plain DOM queries and builds its own stage somewhere else. */
+slidewalk-deck,
+slidewalk-lane,
+slidewalk-slide,
+slidewalk-meta {
+  display: none;
+}
+
+/* .sw-viewport clips and positions the stacked slide panels. Each panel
+   (.sw-slide) fills it exactly with inset:0. That's what lets the
+   slide-in/out transition move two overlapping panels in place. */
+.sw-viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+#sw-stage {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+}
+
+.sw-slide {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  overflow: auto;
+  padding: 4rem 4rem;
+  background: var(--sw-bg);
+  color: var(--sw-fg);
+  isolation: isolate;
+}
+
+.sw-slide h1 {
+  color: var(--sw-h1);
+}
+.sw-slide h2 {
+  color: var(--sw-h2);
+}
+.sw-slide h3 {
+  color: var(--sw-h3);
+}
+.sw-slide h4 {
+  color: var(--sw-h4);
+}
+.sw-slide h5 {
+  color: var(--sw-h5);
+}
+.sw-slide h6 {
+  color: var(--sw-h6);
+}
+
+.sw-slide img,
+.sw-slide video {
+  max-width: 100%;
+}
+
+/* Code blocks and inline code. They sit on their own --sw-code-bg, and every
+   token color is checked against that (see themes/*.css and
+   styles/contrast.test.ts). The sw-tok-* spans come from deck/highlight.ts. */
+.sw-slide pre {
+  overflow: auto;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  background: var(--sw-code-bg);
+  color: var(--sw-code-fg);
+  tab-size: 2;
+}
+
+.sw-slide code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+.sw-slide :not(pre) > code {
+  padding: 0.1em 0.35em;
+  border-radius: 0.25rem;
+  background: var(--sw-code-bg);
+  color: var(--sw-code-fg);
+}
+
+.sw-tok-comment {
+  color: var(--sw-code-comment);
+  font-style: italic; /* so comments don't rely on color alone */
+}
+.sw-tok-keyword {
+  color: var(--sw-code-keyword);
+}
+.sw-tok-string {
+  color: var(--sw-code-string);
+}
+.sw-tok-number {
+  color: var(--sw-code-number);
+}
+.sw-tok-name {
+  color: var(--sw-code-name);
+}
+
+.sw-error {
+  color: #b00020;
+  font-family: ui-monospace, monospace;
+  white-space: pre-wrap;
+}
+
+.sw-fatal-error {
+  padding: 3rem;
+  color: #b00020;
+}
+
+/* The optional "floating tapestry" background you get from
+   background-animation-character: faint, slowly drifting copies of a
+   character behind the slide's real content. Purely decorative, and only
+   there if a slide asks for it. */
+.sw-bg-tapestry {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden; /* clip characters that drift past the panel edge, so
+                        .sw-slide's own overflow:auto never grows a
+                        scrollbar because of this purely cosmetic layer */
+  pointer-events: none;
+}
+
+.sw-bg-tapestry-char {
+  position: absolute;
+  left: var(--sw-tap-left);
+  top: var(--sw-tap-top);
+  font-size: var(--sw-tap-size);
+  line-height: 1;
+  color: var(--sw-fg);
+  opacity: var(--sw-tap-op);
+  will-change: transform;
+  animation: sw-tapestry-drift var(--sw-tap-dur) ease-in-out var(--sw-tap-delay) infinite alternate;
+}
+
+@keyframes sw-tapestry-drift {
+  from {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  to {
+    transform: translate(var(--sw-tap-dx), var(--sw-tap-dy)) rotate(var(--sw-tap-rot));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sw-bg-tapestry-char {
+    animation: none;
+  }
+}
+
+#sw-presenter-panel {
+  display: none;
+}
+
+body.sw-presenter-mode {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+
+body.sw-presenter-mode #sw-stage {
+  width: auto;
+  height: 100%;
+}
+
+body.sw-presenter-mode #sw-presenter-panel {
+  display: block;
+}

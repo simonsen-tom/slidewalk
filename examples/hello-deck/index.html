@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello, Slidewalk</title>
+    <link rel="stylesheet" href="/__slidewalk__/styles/base.css" />
+    <link rel="stylesheet" href="/__slidewalk__/styles/themes/light.css" />
+    <link rel="stylesheet" href="/__slidewalk__/styles/themes/dark.css" />
+    <link rel="stylesheet" href="/__slidewalk__/styles/presenter.css" />
+    <link rel="stylesheet" href="/__slidewalk__/styles/overview.css" />
+    <link rel="stylesheet" href="/__slidewalk__/styles/meta.css" />
+    <!-- This deck's own theme tweaks. Keep it after the built-in styles above so it wins. -->
+    <link rel="stylesheet" href="theme.css" />
+  </head>
+  <body>
+    <slidewalk-deck default-theme="light" title="Hello, Slidewalk">
+      <slidewalk-meta>
+        <slidewalk-slide src="slides/meta-example.md"></slidewalk-slide>
+      </slidewalk-meta>
+      <slidewalk-lane id="main" label="Main Track">
+        <slidewalk-slide src="slides/intro.md" background-animation-character="✦"></slidewalk-slide>
+        <slidewalk-slide
+          src="slides/details.md"
+          flair-character="_"
+          flair-duration="300"
+          theme="dark"
+          background-animation-character="⚙"
+        ></slidewalk-slide>
+        <slidewalk-slide src="slides/theming.md" id="theming"></slidewalk-slide>
+        <slidewalk-slide src="slides/closing.md" id="closer"></slidewalk-slide>
+      </slidewalk-lane>
+      <slidewalk-lane id="deep-dive" label="Deep Dive">
+        <slidewalk-slide src="slides/deep-1.md"></slidewalk-slide>
+        <slidewalk-slide src="slides/deep-2.md" theme="dark"></slidewalk-slide>
+      </slidewalk-lane>
+    </slidewalk-deck>
+
+    <script type="module" src="/__slidewalk__/main.js"></script>
+  </body>
+</html>

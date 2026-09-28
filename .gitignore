@@ -1,0 +1,7 @@
+node_modules/
+dist/
+dist-test/
+*.log
+
+# Local notes for Claude Code, kept out of the public repo
+CLAUDE.md

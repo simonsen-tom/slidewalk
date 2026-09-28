@@ -1,0 +1,15 @@
+/* Full-screen overlay for a <slidewalk-meta> slide. Number keys open it (see
+   input/keyboard.ts) and Escape closes it. It uses the same
+   position:fixed/inset:0/[hidden] setup as #sw-overview (overview.css), one
+   z-index above it. Opening either overlay closes the other one anyway
+   (main.ts), so the z-index is just a safety net for the odd frame where
+   both are briefly visible. */
+#sw-meta {
+  position: fixed;
+  inset: 0;
+  z-index: 101;
+}
+
+#sw-meta[hidden] {
+  display: none;
+}

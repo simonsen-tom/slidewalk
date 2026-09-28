@@ -1,0 +1,33 @@
+/* The "Atomic purple" dark theme. Every value here is a checked WCAG AAA
+   pair (>=7:1) against the deep purple-black #150e23. Headings go from pale
+   violet through purple to fuchsia across h1-h6, in the same hue order as
+   the light theme. */
+.sw-slide[data-sw-theme='dark'] {
+  --sw-bg: #150e23;
+  --sw-fg: #f3eeff; /* 16.52:1 */
+  --sw-h1: #ddd6fe; /* 13.52:1 */
+  --sw-h2: #c4b5fd; /* 10.17:1 */
+  --sw-h3: #e9d5ff; /* 13.79:1 */
+  --sw-h4: #d8b4fe; /* 10.62:1 */
+  --sw-h5: #f5d0fe; /* 13.71:1 */
+  --sw-h6: #f0abfc; /* 10.67:1 */
+
+  /* Code blocks get their own background, so token colors stay readable
+     even if a deck changes --sw-bg. Ratios below are against --sw-code-bg. */
+  --sw-code-bg: #0d0817;
+  --sw-code-fg: #f3eeff; /* 17.37:1 */
+  --sw-code-comment: #a8a2b8; /*  8.01:1, also italic */
+  --sw-code-keyword: #d8b4fe; /* 11.16:1 */
+  --sw-code-string: #86efac; /* 14.05:1 */
+  --sw-code-number: #fdba74; /* 11.70:1 */
+  --sw-code-name: #93c5fd; /* 10.94:1 */
+}
+
+/* The overview grid overlay isn't a .sw-slide. Its background stays dark
+   whatever the theme (see #sw-overview in styles/overview.css). So it gets
+   its own data-sw-theme tag that follows the deck's live default theme.
+   These colors are AAA (>=7:1) against #0f0f0f, not against --sw-bg above. */
+#sw-overview[data-sw-theme='dark'] {
+  --sw-overview-label: #f3eeff; /* 16.87:1 on #0f0f0f */
+  --sw-overview-accent: #c084fc; /*  7.25:1 on #0f0f0f */
+}

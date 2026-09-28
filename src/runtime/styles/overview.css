@@ -1,0 +1,93 @@
+#sw-overview {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--sw-overview-bg);
+  padding: 1rem 0;
+  box-sizing: border-box;
+}
+
+#sw-overview[hidden] {
+  display: none;
+}
+
+.sw-overview-lane {
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.sw-overview-lane-label {
+  display: flex;
+  flex: 0 0 160px;
+  color: var(--sw-overview-label);
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+  font-weight: 600;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: var(--sw-overview-bg);
+}
+
+.sw-overview-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  margin: 0;
+  padding: 0.5rem;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.sw-overview-row::-webkit-scrollbar {
+  display: none;
+}
+
+.sw-overview-cell {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  flex: 0 0 auto;
+}
+
+.sw-overview-thumb {
+  background: #0f0f0f;
+  border-radius: 4px;
+  height: 123.75px;
+  overflow: hidden;
+  outline: 3px solid transparent;
+  outline-offset: 2px;
+  position: relative;
+  width: 220px;
+  margin: 0.5rem;
+}
+
+.sw-overview-cell[aria-selected='true'] .sw-overview-thumb {
+  outline-color: var(--sw-overview-accent);
+}
+
+/* Scale a fixed 960x540 "virtual slide" box down to thumbnail size. We get
+   the real .sw-slide rule for free (padding, bg/fg, h1-h6 colors, and the
+   data-sw-theme switching from themes/*.css). All we override here is
+   position, size, transform and overflow. */
+.sw-overview-thumb .sw-slide {
+  position: absolute;
+  inset: auto; /* cancel the base .sw-slide rule's inset:0 before setting top/left explicitly */
+  top: 0;
+  left: 0;
+  width: 960px;
+  height: 540px;
+  overflow: hidden;
+  transform: scale(calc(220 / 960));
+  transform-origin: top left;
+  pointer-events: none; /* clicks go to the wrapping <button> */
+}

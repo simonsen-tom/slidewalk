@@ -1,0 +1,71 @@
+#sw-presenter-panel {
+  box-sizing: border-box;
+  height: 100vh;
+  overflow: auto;
+  padding: 1.5rem;
+  background: #f4f4f4;
+  color: #1a1a1a;
+  font-family: system-ui, sans-serif;
+  border-left: 1px solid #ccc;
+}
+
+#sw-presenter-panel .sw-presenter-readout,
+#sw-presenter-panel .sw-presenter-readout * {
+  font-size: 0.85rem;
+  font-weight: normal;
+  font-style: normal;
+  font-family: system-ui, sans-serif;
+  text-transform: uppercase;
+  text-align: left;
+  letter-spacing: 0.05em;
+  color: #666;
+}
+#sw-presenter-panel .sw-presenter-readout {
+  margin-bottom: 0.5rem;
+}
+
+#sw-presenter-panel .sw-presenter-timer,
+#sw-presenter-panel .sw-presenter-timer * {
+  font-size: 1.5rem;
+  font-weight: normal;
+  font-style: normal;
+  font-family: system-ui, sans-serif;
+  text-align: left;
+  color: #1a1a1a;
+  font-variant-numeric: tabular-nums;
+}
+#sw-presenter-panel .sw-presenter-timer {
+  margin-bottom: 1.5rem;
+}
+
+#sw-presenter-panel .sw-presenter-notes,
+#sw-presenter-panel .sw-presenter-notes * {
+  font-size: 1rem;
+  font-weight: normal;
+  font-style: normal;
+  font-family: system-ui, sans-serif;
+  text-align: left;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+#sw-presenter-panel .sw-presenter-notes {
+  margin-bottom: 2rem;
+}
+#sw-presenter-panel .sw-presenter-notes strong,
+#sw-presenter-panel .sw-presenter-notes b {
+  font-weight: bold;
+}
+#sw-presenter-panel .sw-presenter-notes em,
+#sw-presenter-panel .sw-presenter-notes i {
+  font-style: italic;
+}
+
+.sw-presenter-preview {
+  height: 40vh;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.sw-presenter-preview .sw-slide {
+  padding: 1.5rem;
+}

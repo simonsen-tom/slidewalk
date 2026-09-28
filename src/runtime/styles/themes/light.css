@@ -1,0 +1,32 @@
+/* The "Atomic purple" light theme. Every value here is a checked WCAG AAA
+   pair (>=7:1) against #ffffff. Headings go from deep indigo-violet through
+   purple to fuchsia across h1-h6. */
+.sw-slide[data-sw-theme='light'] {
+  --sw-bg: #ffffff;
+  --sw-fg: #1f0e33; /* 17.97:1 */
+  --sw-h1: #3b0764; /* 15.00:1 */
+  --sw-h2: #4c1d95; /* 10.95:1 */
+  --sw-h3: #581c87; /* 10.88:1 */
+  --sw-h4: #6b21a8; /*  8.72:1 */
+  --sw-h5: #86198f; /*  8.24:1 */
+  --sw-h6: #701a75; /* 10.03:1 */
+
+  /* Code blocks get their own background, so token colors stay readable
+     even if a deck changes --sw-bg. Ratios below are against --sw-code-bg. */
+  --sw-code-bg: #f7f4fc;
+  --sw-code-fg: #1f0e33; /* 16.51:1 */
+  --sw-code-comment: #414a58; /*  8.23:1, also italic */
+  --sw-code-keyword: #6b21a8; /*  8.01:1 */
+  --sw-code-string: #14532d; /*  8.37:1 */
+  --sw-code-number: #7c2d12; /*  8.61:1 */
+  --sw-code-name: #1e40af; /*  8.02:1 */
+}
+
+/* Same story as in themes/dark.css. The overview overlay's background always
+   stays dark (#0f0f0f), so these are picked to be AAA (>=7:1) against *that*,
+   not against --sw-bg. They still give the light theme its own accent,
+   different from the dark theme's. */
+#sw-overview[data-sw-theme='light'] {
+  --sw-overview-label: #f3eeff; /* 16.87:1 on #0f0f0f */
+  --sw-overview-accent: #f0abfc; /* 10.89:1 on #0f0f0f */
+}

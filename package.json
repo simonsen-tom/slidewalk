@@ -1,0 +1,69 @@
+{
+  "name": "slidewalk",
+  "version": "1.0.0",
+  "description": "A small-footprint web app for presenting markdown-based slide decks navigated as a 2D matrix of lanes and slides.",
+  "keywords": [
+    "slides",
+    "presentation",
+    "markdown",
+    "slide-deck",
+    "presenter",
+    "web-components"
+  ],
+  "homepage": "https://github.com/simonsen-tom/slidewalk#readme",
+  "bugs": {
+    "url": "https://github.com/simonsen-tom/slidewalk/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonsen-tom/slidewalk.git"
+  },
+  "license": "MIT",
+  "author": "Tom Simonsen (https://github.com/simonsen-tom)",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "bin": {
+    "slidewalk": "dist/server/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "all": "npm run format && npm run build && npm run test",
+    "build": "tsc -p tsconfig.json && node scripts/copy-assets.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "start": "npm run build && node dist/server/cli.js",
+    "test": "tsc -p tsconfig.test.json && node scripts/copy-test-vendor.mjs && node --test $(find dist-test -name '*.test.js')",
+    "watch": "node scripts/dev-watch.mjs",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "marked": "^18.0.0",
+    "sirv": "^3.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "@types/node": "^24.0.0",
+    "commitizen": "^4.3.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.7",
+    "linkedom": "^0.18.0",
+    "prettier": "^3.9.9",
+    "typescript": "^5.6.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}
