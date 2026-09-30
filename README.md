@@ -330,9 +330,15 @@ tweak that breaks it fails `npm test`.
 
 ### Theming
 
-Eight CSS custom properties control a slide's colors: `--sw-bg`, `--sw-fg`,
-and `--sw-h1` to `--sw-h6` (one color per heading level). The built-in
-`light` and `dark` themes live in `src/runtime/styles/themes/`.
+Ten CSS custom properties control a slide's colors: `--sw-bg`, `--sw-fg`,
+`--sw-h1` to `--sw-h6` (one color per heading level), and `--sw-link` plus
+`--sw-link-hover` for links. The built-in `light` and `dark` themes live in
+`src/runtime/styles/themes/`.
+
+Links are always underlined, whatever their color. A link color that's AAA
+on the slide background can't look all that different from body text, so
+the underline is what really tells people it's a link. Keyboard focus gets
+an outline in `--sw-link`.
 
 Code gets seven more. `--sw-code-bg` is the code box background, and
 `--sw-code-fg` is plain code text. Then there's one per token type:
@@ -408,7 +414,7 @@ own colors follow the deck's live _default_ theme: `--sw-overview-label`
 selected thumbnail). Their fallback values are in `styles/base.css`, and
 each theme sets its own in `styles/themes/{light,dark}.css` via
 `#sw-overview[data-sw-theme="..."]`. Pressing `T` updates them right away,
-just like the eight slide variables. You can override them the same way,
+just like the ten slide variables. You can override them the same way,
 for example in `theme.css`:
 
 ```css

@@ -12,6 +12,10 @@
   --sw-h5: #f5d0fe; /* 13.71:1 */
   --sw-h6: #f0abfc; /* 10.67:1 */
 
+  /* Links are always underlined too, so these blues don't carry it alone. */
+  --sw-link: #93c5fd; /* 10.41:1 */
+  --sw-link-hover: #bfdbfe; /* 13.21:1 */
+
   /* Code blocks get their own background, so token colors stay readable
      even if a deck changes --sw-bg. Ratios below are against --sw-code-bg. */
   --sw-code-bg: #0d0817;

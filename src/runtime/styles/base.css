@@ -12,6 +12,8 @@
   --sw-h4: #6b21a8; /*  8.72:1 */
   --sw-h5: #86198f; /*  8.24:1 */
   --sw-h6: #701a75; /* 10.03:1 */
+  --sw-link: #1e40af; /*  8.72:1 */
+  --sw-link-hover: #1e3a8a; /* 10.36:1 */
 
   --sw-code-bg: #f7f4fc;
   --sw-code-fg: #1f0e33; /* 16.51:1 */
@@ -88,6 +90,25 @@ slidewalk-meta {
 }
 .sw-slide h6 {
   color: var(--sw-h6);
+}
+
+/* Links. AAA text can't look all that different from AAA body text, so the
+   underline is what really marks a link (color alone isn't enough, see WCAG
+   1.4.1). Hover darkens or lightens the color and thickens the underline. */
+.sw-slide a {
+  color: var(--sw-link);
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.15em;
+}
+.sw-slide a:hover {
+  color: var(--sw-link-hover);
+  text-decoration-thickness: 0.15em;
+}
+.sw-slide a:focus-visible {
+  outline: 2px solid var(--sw-link);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .sw-slide img,

@@ -42,8 +42,9 @@ test('contrast() matches known WCAG values', () => {
 for (const theme of ['light', 'dark']) {
   const vars = readVars(`themes/${theme}.css`, `.sw-slide[data-sw-theme='${theme}']`);
 
-  test(`${theme} theme: body text and headings are AAA on the slide background`, () => {
-    for (const name of ['--sw-fg', '--sw-h1', '--sw-h2', '--sw-h3', '--sw-h4', '--sw-h5', '--sw-h6']) {
+  test(`${theme} theme: body text, headings and links are AAA on the slide background`, () => {
+    const names = ['--sw-fg', '--sw-h1', '--sw-h2', '--sw-h3', '--sw-h4', '--sw-h5', '--sw-h6'];
+    for (const name of [...names, '--sw-link', '--sw-link-hover']) {
       assert.ok(vars[name], `${name} is missing`);
       const ratio = contrast(vars[name]!, vars['--sw-bg']!);
       assert.ok(ratio >= AAA, `${name} ${vars[name]} is only ${ratio.toFixed(2)}:1 on ${vars['--sw-bg']}`);
