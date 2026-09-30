@@ -17,6 +17,8 @@
  *   --sw-bg          slide background
  *   --sw-fg          body text
  *   --sw-h1..--sw-h6 heading colors, one per level
+ *   --sw-link        link color (links are always underlined too)
+ *   --sw-link-hover  link color while hovered
  *
  * Code blocks have their own set, so they stay readable whatever --sw-bg is:
  *
@@ -73,6 +75,8 @@
   --sw-h4: #713f12; /*  8.04:1 */
   --sw-h5: #6b3a0a; /*  8.71:1 */
   --sw-h6: #5c2a0a; /* 10.87:1 */
+  --sw-link: #1f3f5c; /* 10.12:1 */
+  --sw-link-hover: #7f1d1d; /*  9.29:1 */
 
   /* A slightly deeper cream, so the code box stands out from the slide. */
   --sw-code-bg: #f4ead0;
@@ -94,6 +98,8 @@
   --sw-h4: #fbbf77; /* 10.73:1 */
   --sw-h5: #f9d7b0; /* 12.87:1 */
   --sw-h6: #fde2c2; /* 14.09:1 */
+  --sw-link: #fde68a; /* 14.12:1 */
+  --sw-link-hover: #fef3c7; /* 15.79:1 */
 
   /* A touch darker than the slide, so the code box stands out. */
   --sw-code-bg: #15110c;
